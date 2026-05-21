@@ -18,13 +18,12 @@ function resetEmoji(status: GameStatus): string {
 
 const GameHUD = ({ flagsLeft, elapsedTime, status, onReset }: GameHUDProps) => {
   return (
-    <div className="flex items-center justify-between w-full px-3 py-2 bg-slate-200 border border-slate-400 rounded-lg select-none">
+    <div className="flex items-center justify-between px-3 py-2 bg-slate-300 border-t-2 border-l-2 border-b-2 border-r-2 border-t-slate-500 border-l-slate-500 border-b-slate-100 border-r-slate-100 select-none">
 
-      {/* Flags counter */}
-      <div className="flex items-center gap-1 min-w-[4rem]">
-        <span className="text-lg">🚩</span>
-        <span className="font-mono font-bold text-slate-800 text-lg w-8 text-right">
-          {flagsLeft}
+      {/* Flags counter — inset display */}
+      <div className="flex items-center gap-1 bg-black px-2 py-0.5 rounded-sm min-w-[3.5rem] justify-end">
+        <span className="font-mono font-bold text-red-500 text-lg tabular-nums">
+          {String(Math.max(0, flagsLeft)).padStart(3, '0')}
         </span>
       </div>
 
@@ -32,18 +31,24 @@ const GameHUD = ({ flagsLeft, elapsedTime, status, onReset }: GameHUDProps) => {
       <button
         type="button"
         onClick={onReset}
-        className="text-2xl leading-none hover:scale-110 active:scale-95 transition-transform cursor-pointer"
+        className={[
+          'text-xl w-9 h-9 flex items-center justify-center',
+          'bg-slate-300 border-t-2 border-l-2 border-b-2 border-r-2',
+          'border-t-slate-100 border-l-slate-100 border-b-slate-500 border-r-slate-500',
+          'hover:brightness-110 active:border-t-slate-500 active:border-l-slate-500',
+          'active:border-b-slate-100 active:border-r-slate-100 cursor-pointer',
+          'transition-[filter]',
+        ].join(' ')}
         aria-label="Nowa gra"
         title="Nowa gra"
       >
         {resetEmoji(status)}
       </button>
 
-      {/* Timer */}
-      <div className="flex items-center gap-1 min-w-[4rem] justify-end">
-        <span className="text-lg">⏱️</span>
-        <span className="font-mono font-bold text-slate-800 text-lg w-10 text-right">
-          {formatTime(elapsedTime)}
+      {/* Timer — inset display */}
+      <div className="flex items-center gap-1 bg-black px-2 py-0.5 rounded-sm min-w-[3.5rem] justify-start">
+        <span className="font-mono font-bold text-red-500 text-lg tabular-nums">
+          {formatTime(elapsedTime).padStart(4, '0')}
         </span>
       </div>
 

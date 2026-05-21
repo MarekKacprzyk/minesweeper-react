@@ -50,10 +50,10 @@ const GamePage = () => {
         ← Menu
       </button>
 
-      {/* Game container */}
-      <div className="flex flex-col items-center gap-3">
-        {/* HUD */}
-        <div style={{ width: `${settings.width * 2.25}rem` }} className="min-w-48 max-w-full">
+      {/* Game container — w-fit so HUD naturally matches board width */}
+      <div className="flex flex-col items-center gap-2 w-fit max-w-full">
+        {/* HUD stretches to fill the same width as Board below */}
+        <div className="w-full">
           <GameHUD
             flagsLeft={gameState.flagsLeft}
             elapsedTime={elapsedTime}
