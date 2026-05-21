@@ -5,7 +5,7 @@ import ScoresPage from './pages/ScoresPage';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/minesweeper-react/">
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/game" element={<GamePage />} />
